@@ -1,0 +1,104 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ink-950: #07090d;
+  --color-ink-900: #0b0f14;
+  --color-ink-850: #10151c;
+  --color-ink-800: #161d26;
+  --color-ink-750: #1c232d;
+  --color-ink-700: #222b36;
+  --color-ink-600: #2a3441;
+  --color-ink-500: #3a4756;
+  --color-mute: #8b98a8;
+  --color-soft: #c9d2dc;
+  --color-fg: #f2f5f8;
+  --color-aqua: #5ce1ff;
+  --color-aqua-deep: #04121a;
+  --color-lime: #c8f55a;
+  --color-amber: #ffb257;
+  --color-coral: #ff8f82;
+  --color-peri: #9fb4ff;
+  --color-wet: #24408f;
+  --color-band: #2ba3c2;
+  --color-dry: #ffc978;
+
+  --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Space Grotesk Variable", "Inter Variable", ui-sans-serif, sans-serif;
+
+  --radius-card: 1.5rem;
+
+  --animate-rise: rise 0.45s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  --animate-pop: pop 0.35s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  --animate-pulse-dot: pulse-dot 1.8s ease-in-out infinite;
+  --animate-toast: toast-in 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes pop {
+    from { opacity: 0; transform: scale(0.96); }
+    to { opacity: 1; transform: scale(1); }
+  }
+  @keyframes pulse-dot {
+    0%, 100% { box-shadow: 0 0 0 0 rgb(200 245 90 / 0.55); }
+    50% { box-shadow: 0 0 0 6px rgb(200 245 90 / 0); }
+  }
+  @keyframes toast-in {
+    from { opacity: 0; transform: translateY(16px) scale(0.98); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
+}
+
+@layer base {
+  html {
+    background: var(--color-ink-950);
+    color: var(--color-fg);
+    color-scheme: dark;
+    -webkit-tap-highlight-color: transparent;
+  }
+  body {
+    font-family: var(--font-sans);
+    font-feature-settings: "cv11", "ss01";
+  }
+  ::selection {
+    background: rgb(92 225 255 / 0.35);
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-aqua);
+    outline-offset: 2px;
+    border-radius: 8px;
+  }
+  button {
+    cursor: pointer;
+  }
+}
+
+@utility tnum {
+  font-variant-numeric: tabular-nums;
+}
+
+@utility card {
+  background: var(--color-ink-850);
+  border: 1px solid var(--color-ink-700);
+  border-radius: var(--radius-card);
+}
+
+@utility scrollbar-none {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@media print {
+  html, body { background: white !important; color: black !important; }
+  .no-print { display: none !important; }
+}
